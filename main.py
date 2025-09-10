@@ -5,6 +5,12 @@ from services.document_service import DocumentService
 from services.chat_service import ChatService
 from utils.session_manager import SessionManager
 
+try:
+    groq_api_key = st.secrets["GROQ_API_KEY"]
+except KeyError:
+    st.error("GROQ_API_KEY not found in secrets. Please configure it in Streamlit Cloud settings.")
+    st.stop()
+    
 def main():
     """Main application entry point"""
     # Configure page
@@ -43,4 +49,5 @@ def main():
     ui.apply_custom_styling()
 
 if __name__ == "__main__":
+
     main()
