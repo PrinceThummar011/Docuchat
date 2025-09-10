@@ -5,11 +5,28 @@ from services.document_service import DocumentService
 from services.chat_service import ChatService
 from utils.session_manager import SessionManager
 
+# Check for API key in secrets first, then allow user input
+groq_api_key = None
+
+# Try to get from secrets (for your deployed version)
 try:
-    groq_api_key = st.secrets["GROQ_API_KEY"]
-except KeyError:
-    st.error("GROQ_API_KEY not found in secrets. Please configure it in Streamlit Cloud settings.")
-    st.stop()
+    groq_api_key = st.secrets.get("GROQ_API_KEY")
+except:
+    pass
+
+# If no API key in secrets, ask user to input it
+if not groq_api_key:
+    st.sidebar.header("🔑 API Configuration")
+    groq_api_key = st.sidebar.text_input(
+        "Enter your GROQ API Key:", 
+        type="password",
+        help="Get your free API key from https://console.groq.com/keys"
+    )
+    
+    if not groq_api_key:
+        st.warning("⚠️ Please enter your GROQ API key in the sidebar to use this app.")
+        st.info("📝 **How to get a GROQ API key:**\n1. Go to https://console.groq.com/keys\n2. Sign up/Login\n3. Create a new API key\n4. Copy and paste it in the sidebar")
+        st.stop()
     
 def main():
     """Main application entry point"""
@@ -51,3 +68,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
