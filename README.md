@@ -11,7 +11,7 @@ A Streamlit application that allows you to chat with your documents (PDF, images
 ## Setup Instructions
 
 ### Option 1: Use Online (Recommended)
-1. Visit the deployed app: [Your Streamlit Cloud URL]https://docuchat-by-prince.streamlit.app/
+1. Visit the deployed app: [https://docuchat-by-prince.streamlit.app/]
 2. Enter your GROQ API key in the sidebar
 3. Start uploading documents and asking questions!
 
