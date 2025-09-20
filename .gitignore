@@ -1,8 +1,50 @@
+# API Keys and Secrets
 .streamlit/secrets.toml
+.env
+.env.local
+.env.production
+secrets.toml
+
+# Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.env
-.venv/
+.Python
+env/
 venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads (temporary files - don't commit user uploads)
+uploads/*.pdf
+uploads/*.docx
+uploads/*.txt
+uploads/*.doc
+
+# Keep uploads folder but not the files
+!uploads/.gitkeep
+
+# Logs
+*.log
+
+# Flask session files
+flask_session/
+
+# Development files
+.pytest_cache/
+.coverage
+htmlcov/
