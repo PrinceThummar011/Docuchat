@@ -73,7 +73,7 @@ body {
 
 /* Sidebar Styles */
 .sidebar {
-    width: 320px;
+    width: 280px;
     background-color: var(--bg-sidebar);
     border-right: 1px solid var(--border-secondary);
     display: flex;
@@ -436,37 +436,51 @@ body {
     overflow-y: auto;
     background-color: var(--bg-chat);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 140px);
 }
 
 /* Welcome Screen */
 .welcome-screen {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    height: 100%;
-    padding: var(--spacing-xl);
+    min-height: calc(100vh - 140px);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    overflow-y: auto;
+    padding-top: 60px;
 }
 
 .welcome-content {
     text-align: center;
-    max-width: 600px;
+    max-width: 500px;
+    width: 100%;
+    padding: var(--spacing-md);
+    margin-top: 20px;
 }
 
 .welcome-icon {
     font-size: 4rem;
     color: var(--text-accent);
     margin-bottom: var(--spacing-lg);
+    display: block;
+    line-height: 1.2;
+    padding: var(--spacing-md) 0;
 }
 
 .welcome-screen h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .welcome-screen p {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: var(--spacing-xl);
@@ -634,9 +648,9 @@ body {
 
 /* Input Area */
 .input-area {
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-primary);
     border-top: 1px solid var(--border-secondary);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
 }
 
 .input-container {
@@ -647,15 +661,16 @@ body {
 .input-wrapper {
     display: flex;
     align-items: end;
-    background-color: var(--bg-input);
-    border: 1px solid var(--border-primary);
+    background-color: var(--bg-secondary);
+    border: none;
     border-radius: var(--radius-xl);
-    padding: var(--spacing-md);
-    transition: border-color 0.2s ease;
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: background-color 0.2s ease;
+    box-shadow: none;
 }
 
 .input-wrapper:focus-within {
-    border-color: var(--text-accent);
+    background-color: var(--bg-tertiary);
 }
 
 .input-wrapper textarea {
@@ -665,10 +680,11 @@ body {
     outline: none;
     color: var(--text-primary);
     font-family: var(--font-primary);
-    font-size: 1rem;
+    font-size: 0.95rem;
     resize: none;
     max-height: 200px;
-    min-height: 24px;
+    min-height: 20px;
+    padding: var(--spacing-xs) 0;
 }
 
 .input-wrapper textarea::placeholder {
@@ -679,8 +695,8 @@ body {
     background-color: var(--text-accent);
     color: white;
     border: none;
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -688,6 +704,7 @@ body {
     justify-content: center;
     margin-left: var(--spacing-sm);
     transition: all 0.2s ease;
+    font-size: 0.8rem;
 }
 
 .send-button:hover:not(:disabled) {
@@ -720,15 +737,17 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 9999;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
+    pointer-events: none;
 }
 
 .loading-overlay.show {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 .loading-content {
@@ -858,33 +877,33 @@ body {
     }
 
     .welcome-screen h2 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .welcome-screen p {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
     .sidebar {
-        width: 280px;
+        width: 260px;
     }
 
     .input-area {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
     }
 
     .chat-messages {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
     }
 
     .welcome-screen {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
     }
 
     .question-card {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
     }
 }
 
