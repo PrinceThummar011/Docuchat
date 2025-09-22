@@ -4,7 +4,7 @@ A simple web application that allows you to chat with your documents using AI. U
 
 ## 🚀 Live Demo
 
-Try the live demo: **[DocuChat Live Demo](https://docuchat-demo.herokuapp.com)**
+Try the live demo: **[DocuChat Live Demo]([https://upgraded-space-bassoon-r47rv6pgv6x9fvqg-5000.app.github.dev/])**
 
 *Note: The demo uses a limited API quota. For full functionality, please run the application locally with your own Groq API key.*
 
