@@ -1,101 +1,74 @@
-# 💬 DocuChat# 💬 DocuChat# 💬 DocuChat
+# DocuChat - AI Document Assistant
 
-**Chat with documents instantly!** • [🚀 **LIVE DEMO**](https://organic-space-barnacle-pj7gqwprqgj737wrw-5000.app.github.dev/)
+A simple web application that allows you to chat with your documents using AI. Upload PDF, DOCX, or TXT files and ask questions about their content.
 
-> **Chat with your documents instantly!** ✨> **Chat with your documents instantly!** ✨
+## 🚀 Live Demo
 
-🧠 Smart Analysis • 🤖 AI Enhancement • 🌙 Dark Theme • 📱 Mobile Ready
+Try the live demo: **[DocuChat Live Demo](https://docuchat-demo.herokuapp.com)**
 
+*Note: The demo uses a limited API quota. For full functionality, please run the application locally with your own Groq API key.*
 
+## Features
 
-**Deploy:** Click "Code" → "Codespaces" → "Create" → Done! 🎉
+- 📄 Upload and extract text from PDF, DOCX, and TXT files
+- 🤖 Chat with your documents using AI (powered by Groq API)
+- 💬 Interactive chat interface
+- 🎨 Clean and modern web interface
+- 📱 Responsive design
 
-## 🌐 **[🚀 LIVE DEMO](https://organic-space-barnacle-pj7gqwprqgj737wrw-5000.app.github.dev/)**## 🌐 **[🚀 LIVE DEMO](https://organic-space-barnacle-pj7gqwprqgj737wrw-5000.app.github.dev/)**
+## Requirements
 
-**Local:** `git clone https://github.com/PrinceThummar011/Docuchat.git && cd Docuchat && pip install -r requirements.txt && python simple_app.py`
+- Python 3.7+
+- Groq API Key
 
+## Installation
 
+1. Clone or download this repository
+2. Install the required packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-**Optional AI:** [Get API key](https://console.groq.com/keys) → Paste in app
+## Usage
 
-### Features### Features
+1. Run the application:
+   ```bash
+   python simple_app.py
+   ```
 
----
+2. Open your web browser and go to `http://localhost:5000`
 
-Made with ❤️ by [@PrinceThummar011](https://github.com/PrinceThummar011)🧠 Smart Analysis • 🤖 AI Enhancement • 🌙 Dark Theme • 📱 Mobile Ready🧠 Smart Analysis • 🤖 AI Enhancement • 🌙 Dark Theme • 📱 Mobile Ready
+3. Enter your Groq API key when prompted
 
+4. Upload a document (PDF, DOCX, or TXT file)
 
+5. Start chatting with your document!
 
-## ⚡ Quick Deploy---
+## How to Get Groq API Key
+
+1. Visit [Groq Console](https://console.groq.com/)
+2. Sign up or log in to your account
+3. Navigate to API Keys section
+4. Create a new API key
+5. Copy and paste it into the application
+
+## Supported File Types
+
+- PDF files (.pdf)
+- Word documents (.docx)
+- Text files (.txt)
+
+## Project Structure
 
 ```
-
-Click "Code" → "Codespaces" → "Create" → Done! 🎉## 📄 **How It Works** (So Simple!)
-
+Docuchat/
+├── simple_app.py          # Main Flask application
+├── requirements.txt       # Python dependencies
+├── templates/
+│   └── index.html        # Main HTML template
+├── static/
+│   ├── style.css         # CSS styles
+│   └── script.js         # JavaScript functionality
+└── uploads/              # Uploaded files storage
 ```
 
-```
-
-## 💻 Local Run📁 UPLOAD → 🧠 ANALYZE → � CHAT → ✨ MAGIC!
-
-```bash```
-
-git clone https://github.com/PrinceThummar011/Docuchat.git
-
-cd Docuchat && pip install -r requirements.txt && python simple_app.py1. **Drag & Drop** your PDF/Word documents
-
-```2. **Ask Questions** naturally, like talking to a friend
-
-3. **Get Smart Answers** instantly (no setup required!)
-
-## 🔑 Optional AI Enhancement  4. **Add API Key** for AI superpowers (optional)
-
-Get free API key → [console.groq.com/keys](https://console.groq.com/keys) → Paste in app
-
----
-
----
-
-Made with ❤️ by [@PrinceThummar011](https://github.com/PrinceThummar011)## 🎨 **Beautiful Features**
-
-| Feature | Description |
-|---------|-------------|
-| 🌙 **Dark Mode** | Sleek ChatGPT-inspired design |
-| 📱 **Responsive** | Perfect on mobile, tablet, desktop |
-| 🔍 **Smart Search** | Finds answers in your documents |
-| ⚡ **No Setup** | Works immediately out of the box |
-| 🔒 **Private** | Your docs stay on your device |
-| 🚀 **Fast** | Lightning-quick responses |
-
----
-
-## 🛠️ **Local Development** (Optional)
-
-Want to run it locally? Super easy:
-
-```bash
-git clone https://github.com/PrinceThummar011/Docuchat.git
-cd Docuchat
-pip install -r requirements.txt
-python simple_app.py
-# Visit: http://localhost:5000 🌐
-```
-
----
-
-## 🔑 **Want AI Superpowers?** (Optional)
-
-1. Get free GROQ API key → [console.groq.com/keys](https://console.groq.com/keys)
-2. Paste it in the app's sidebar
-3. Enjoy enhanced AI responses! 🤖✨
-
----
-
-## ❤️ **Made With Love**
-
-Built with **Flask**, **Python**, and lots of ☕ by [@PrinceThummar011](https://github.com/PrinceThummar011)
-
----
-
-### 🚀 **Ready to Chat with Your Documents?**
-### **[👉 TRY THE LIVE DEMO NOW! 👈](https://organic-space-barnacle-pj7gqwprqgj737wrw-5000.app.github.dev/)**
