@@ -1,4 +1,4 @@
-# DocuChat (Streamlit)
+# DocuChat
 
 Chat with your documents using smart local analysis or optional AI‑enhanced answers powered by your own GROQ API key.
 
