@@ -29,11 +29,21 @@ venv.bak/
 .DS_Store
 Thumbs.db
 
-# Uploads (temporary files - don't commit user uploads)
-uploads/*.pdf
-uploads/*.docx
-uploads/*.txt
-uploads/*.doc
+# Uploads (temporary files - ignore all uploaded content)
+uploads/**
+
+# Streamlit cache
+.streamlit/
+.cache/
+**/.streamlit/
+**/.cache/
+
+# Python tooling caches
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+.tox/
 
 # Keep uploads folder but not the files
 !uploads/.gitkeep
@@ -44,7 +54,12 @@ uploads/*.doc
 # Flask session files
 flask_session/
 
-# Development files
-.pytest_cache/
+# Coverage and reports
 .coverage
+.coverage.*
+coverage.xml
 htmlcov/
+
+# Local config
+.python-version
+*.local

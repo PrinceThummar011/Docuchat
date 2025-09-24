@@ -1,7 +1,7 @@
 # GitHub Codespaces will auto-run your Flask app
 # This workflow ensures your app is always ready to run
 
-name: DocuChat Ready Check
+name: DocuChat Streamlit Ready Check
 
 on:
   push:
@@ -26,11 +26,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     
-    - name: Test Flask app starts
+    - name: Test Streamlit app starts
       run: |
-        timeout 10s python simple_app.py || echo "Flask app starts successfully"
+        timeout 10s streamlit run streamlit_app.py --server.headless true || echo "Streamlit app starts"
     
     - name: Validate Python syntax
       run: |
-        python -m py_compile simple_app.py
-        echo "✅ DocuChat is ready for deployment!"
+        python -m py_compile streamlit_app.py simple_app.py
+        echo "✅ DocuChat (Streamlit) is ready!"

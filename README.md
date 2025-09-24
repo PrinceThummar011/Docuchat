@@ -1,74 +1,60 @@
-# DocuChat - AI Document Assistant
+# DocuChat (Streamlit)
 
-A simple web application that allows you to chat with your documents using AI. Upload PDF, DOCX, or TXT files and ask questions about their content.
-
-## 🚀 Live Demo
-
-Try the live demo: **[DocuChat Live Demo](https://docuchat-demo.herokuapp.com)**
-
-*Note: The demo uses a limited API quota. For full functionality, please run the application locally with your own Groq API key.*
+Chat with your documents using smart local analysis or optional AI‑enhanced answers powered by your own GROQ API key.
 
 ## Features
-
-- 📄 Upload and extract text from PDF, DOCX, and TXT files
-- 🤖 Chat with your documents using AI (powered by Groq API)
-- 💬 Interactive chat interface
-- 🎨 Clean and modern web interface
-- 📱 Responsive design
+- Upload and read PDF, DOCX, and TXT files
+- Ask questions and receive summarized or extracted answers
+- Two modes:
+  - 📄 Smart Mode (no API key required)
+  - 🤖 AI Enhanced (add your `gsk_...` GROQ API key)
 
 ## Requirements
+- Python 3.9+
+- pip
 
-- Python 3.7+
-- Groq API Key
+## Setup
+```bash
+pip install -r requirements.txt
+```
 
-## Installation
+## Run Locally
+```bash
+streamlit run streamlit_app.py
+```
+Then open `http://localhost:8501`.
 
-1. Clone or download this repository
-2. Install the required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## How To Use
+1) Upload one or more documents from the left sidebar (PDF/DOCX/TXT)
+2) Optional: paste your GROQ API key (starts with `gsk_`) for AI Enhanced answers
+3) Ask your question in the chat box at the bottom
+4) Remove any file using the trash icon if needed
 
-## Usage
+## Get a GROQ API Key (optional)
+- Create a free key in the GROQ Console: https://console.groq.com/keys
+- Paste it in the Streamlit sidebar to enable AI Enhanced mode
+- Without a key, the app uses Smart Mode automatically
 
-1. Run the application:
-   ```bash
-   python simple_app.py
-   ```
-
-2. Open your web browser and go to `http://localhost:5000`
-
-3. Enter your Groq API key when prompted
-
-4. Upload a document (PDF, DOCX, or TXT file)
-
-5. Start chatting with your document!
-
-## How to Get Groq API Key
-
-1. Visit [Groq Console](https://console.groq.com/)
-2. Sign up or log in to your account
-3. Navigate to API Keys section
-4. Create a new API key
-5. Copy and paste it into the application
-
-## Supported File Types
-
-- PDF files (.pdf)
-- Word documents (.docx)
-- Text files (.txt)
+## Deploy to Streamlit Cloud
+- App file: `streamlit_app.py`
+- Python version: auto from `requirements.txt` (3.9+)
+- Optional secrets: set `GROQ_API_KEY` in Streamlit Cloud Secrets (shared across all users)
+- Note: Files saved in `uploads/` are ephemeral in Streamlit Cloud (cleared on restart)
 
 ## Project Structure
-
 ```
 Docuchat/
-├── simple_app.py          # Main Flask application
-├── requirements.txt       # Python dependencies
-├── templates/
-│   └── index.html        # Main HTML template
-├── static/
-│   ├── style.css         # CSS styles
-│   └── script.js         # JavaScript functionality
-└── uploads/              # Uploaded files storage
+├─ streamlit_app.py    # Streamlit UI (primary entry)
+├─ simple_app.py       # Reusable logic: parsing, analysis, and GROQ call
+├─ requirements.txt    # Python dependencies
+├─ README.md           # This file
+└─ uploads/            # Temporary user files (gitignored)
 ```
 
+## Privacy
+- No hardcoded API keys in the repo
+- Your key, if provided, is only used to call GROQ on your behalf
+- Smart Mode runs locally without external calls
+
+## License
+This project is provided as-is for educational and personal use.
