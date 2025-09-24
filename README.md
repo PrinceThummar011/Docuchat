@@ -2,6 +2,9 @@
 
 Chat with your documents using smart local analysis or optional AI‑enhanced answers powered by your own GROQ API key.
 
+## Live Demo
+- Open: https://docuchat-by-prince.streamlit.app/
+
 ## Features
 - Upload and read PDF, DOCX, and TXT files
 - Ask questions and receive summarized or extracted answers
@@ -35,12 +38,6 @@ Then open `http://localhost:8501`.
 - Paste it in the Streamlit sidebar to enable AI Enhanced mode
 - Without a key, the app uses Smart Mode automatically
 
-## Deploy to Streamlit Cloud
-- App file: `streamlit_app.py`
-- Python version: auto from `requirements.txt` (3.9+)
-- Optional secrets: set `GROQ_API_KEY` in Streamlit Cloud Secrets (shared across all users)
-- Note: Files saved in `uploads/` are ephemeral in Streamlit Cloud (cleared on restart)
-
 ## Project Structure
 ```
 Docuchat/
@@ -56,5 +53,4 @@ Docuchat/
 - Your key, if provided, is only used to call GROQ on your behalf
 - Smart Mode runs locally without external calls
 
-## License
-This project is provided as-is for educational and personal use.
+
