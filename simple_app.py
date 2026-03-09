@@ -2,7 +2,8 @@ import os
 import re
 import PyPDF2
 import docx
-import requests
+from langchain_groq import ChatGroq
+from langchain_core.messages import HumanMessage, SystemMessage
 
 def validate_groq_api_key(api_key):
     """Validate GROQ API key format and structure"""
@@ -75,76 +76,44 @@ def extract_docx_text(file_path):
         return f"Error reading DOCX: {str(e)}"
 
 def get_ai_response(message, document_content, api_key):
-    """Get AI response using Groq API"""
-    try:
-        print(f"🔑 API Key length: {len(api_key) if api_key else 0}")
-        
-        headers = {
-            'Authorization': f'Bearer {api_key}',
-            'Content-Type': 'application/json'
-        }
-        
-        prompt = f"""Based on the following document content, please answer the user's question.
+    """Get AI response using LangChain + Groq"""
+    print(f"🔑 API Key length: {len(api_key) if api_key else 0}")
+
+    models = ['llama-3.1-8b-instant', 'llama3-8b-8192', 'mixtral-8x7b-32768', 'gemma-7b-it']
+
+    messages = [
+        SystemMessage(content="You are a helpful assistant that answers questions based on document content."),
+        HumanMessage(content=f"""Based on the following document content, please answer the user's question.
 
 Document Content:
 {document_content[:3000]}...
 
 User Question: {message}
 
-Please provide a helpful and accurate answer based on the document content."""
+Please provide a helpful and accurate answer based on the document content.""")
+    ]
 
-        # Try different models if one fails
-        models = ['llama-3.1-8b-instant', 'llama3-8b-8192', 'mixtral-8x7b-32768', 'gemma-7b-it']
-        
-        for model in models:
-            try:
-                print(f"🤖 Trying model: {model}")
-                payload = {
-                    'messages': [
-                        {
-                            'role': 'user',
-                            'content': prompt
-                        }
-                    ],
-                    'model': model,
-                    'max_tokens': 1000,
-                    'temperature': 0.7
-                }
-                
-                response = requests.post(
-                    'https://api.groq.com/openai/v1/chat/completions',
-                    headers=headers,
-                    json=payload,
-                    timeout=30
-                )
-                
-                print(f"📡 Response status: {response.status_code}")
-                
-                if response.status_code == 200:
-                    result = response.json()
-                    print("✅ AI response received successfully")
-                    return result['choices'][0]['message']['content']
-                elif response.status_code == 400:
-                    error_data = response.json()
-                    print(f"⚠️ Model {model} error: {error_data}")
-                    # Try next model if this one is not available
-                    continue
-                elif response.status_code == 401:
-                    print("❌ Authentication failed - Invalid API key")
-                    return "Authentication failed. Please check your API key is valid."
-                else:
-                    print(f"❌ API Error: {response.status_code} - {response.text}")
-                    return f"Error from AI service: {response.status_code} - {response.text}"
-            except Exception as e:
-                print(f"❌ Exception with model {model}: {str(e)}")
-                # Try next model
-                continue
-        
-        return "All AI models are currently unavailable. Please try again later or check your API key."
-            
-    except Exception as e:
-        print(f"❌ General error in get_ai_response: {str(e)}")
-        return f"Error getting AI response: {str(e)}"
+    for model in models:
+        try:
+            print(f"🤖 Trying model: {model}")
+            llm = ChatGroq(
+                api_key=api_key,
+                model_name=model,
+                max_tokens=1000,
+                temperature=0.7
+            )
+            response = llm.invoke(messages)
+            print("✅ AI response received successfully")
+            return response.content
+        except Exception as e:
+            error_msg = str(e)
+            print(f"❌ Exception with model {model}: {error_msg}")
+            if any(word in error_msg.lower() for word in ['401', 'authentication', 'invalid api key', 'unauthorized']):
+                return "Authentication failed. Please check your API key is valid."
+            # Try next model
+            continue
+
+    return "All AI models are currently unavailable. Please try again later or check your API key."
 
 def analyze_document_content(message, document_content):
     """Analyze document content and provide intelligent responses without API"""

@@ -14,9 +14,16 @@ Chat with your documents using smart local analysis or optional AI‑enhanced an
 
 ## Requirements
 - Python 3.9+
-- pip
+- [uv](https://github.com/astral-sh/uv) (recommended) or pip
 
-## Setup
+## Setup (using uv)
+```bash
+uv venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+uv pip install -r requirements.txt
+```
+
+## Setup (using pip)
 ```bash
 pip install -r requirements.txt
 ```
@@ -38,11 +45,18 @@ Then open `http://localhost:8501`.
 - Paste it in the Streamlit sidebar to enable AI Enhanced mode
 - Without a key, the app uses Smart Mode automatically
 
+## Tech Stack
+- **UI** — Streamlit
+- **LLM Framework** — LangChain (`langchain-groq`, `langchain-core`)
+- **LLM Provider** — Groq API (`llama-3.1-8b-instant` and fallbacks)
+- **Doc Parsing** — PyPDF2, python-docx
+- **Package Manager** — uv
+
 ## Project Structure
 ```
 Docuchat/
 ├─ streamlit_app.py    # Streamlit UI (primary entry)
-├─ simple_app.py       # Reusable logic: parsing, analysis, and GROQ call
+├─ simple_app.py       # Reusable logic: parsing, analysis, and LangChain+Groq call
 ├─ requirements.txt    # Python dependencies
 ├─ README.md           # This file
 └─ uploads/            # Temporary user files (gitignored)
