@@ -7,10 +7,10 @@ Chat with your documents using smart local analysis or optional AI‑enhanced an
 
 ## Features
 - Upload and read PDF, DOCX, and TXT files
-- Ask questions and receive summarized or extracted answers
-- Two modes:
-  - 📄 Smart Mode (no API key required)
-  - 🤖 AI Enhanced (add your `gsk_...` GROQ API key)
+- Ask questions and get accurate answers using RAG (Retrieval-Augmented Generation)
+- FAISS vector store for semantic document search
+- Powered by Groq LLM (`llama-3.1-8b-instant`)
+- Supports multiple documents simultaneously
 
 ## Requirements
 - Python 3.9+
@@ -28,10 +28,10 @@ uv run streamlit run streamlit_app.py
 Then open `http://localhost:8501`.
 
 ## How To Use
-1) Upload one or more documents from the left sidebar (PDF/DOCX/TXT)
-2) Optional: paste your GROQ API key (starts with `gsk_`) for AI Enhanced answers
-3) Ask your question in the chat box at the bottom
-4) Remove any file using the trash icon if needed
+1) Enter your GROQ API key in the sidebar (starts with `gsk_`)
+2) Upload one or more documents (PDF/DOCX/TXT) — knowledge base builds automatically
+3) Ask your question in the chat box
+4) Get accurate answers retrieved from your documents
 
 ## Get a GROQ API Key (optional)
 - Create a free key in the GROQ Console: https://console.groq.com/keys
@@ -41,7 +41,10 @@ Then open `http://localhost:8501`.
 ## Tech Stack
 - **UI** — Streamlit
 - **LLM Framework** — LangChain (`langchain-groq`, `langchain-core`)
-- **LLM Provider** — Groq API (`llama-3.1-8b-instant` and fallbacks)
+- **LLM Provider** — Groq API (`llama-3.1-8b-instant`)
+- **Vector Store** — FAISS (`faiss-cpu`)
+- **Embeddings** — HuggingFace (`all-MiniLM-L6-v2` via `langchain-huggingface`)
+- **Text Splitting** — `langchain-text-splitters` (`RecursiveCharacterTextSplitter`)
 - **Doc Parsing** — PyPDF2, python-docx
 - **Package Manager** — uv (`pyproject.toml`)
 
