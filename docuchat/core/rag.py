@@ -1,5 +1,6 @@
 """RAG pipeline: vector store construction and retrieval-augmented generation."""
 
+import streamlit as st
 from langchain_community.vectorstores import FAISS
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_groq import ChatGroq
@@ -7,10 +8,12 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # ---------------------------------------------------------------------------
-# Embedding model — loaded once at module import (~90 MB, cached after first
-# download to ~/.cache/huggingface/hub).
+# Embedding model — cached across Streamlit sessions/reruns so it is loaded
+# only once per server process (avoids repeated 90 MB downloads).
 # ---------------------------------------------------------------------------
-_embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+@st.cache_resource(show_spinner="Loading embedding model…")
+def _get_embeddings() -> HuggingFaceEmbeddings:
+    return HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 _CHUNK_SIZE = 500
 _CHUNK_OVERLAP = 50
@@ -53,7 +56,7 @@ def build_vector_store(files: list[dict]) -> FAISS | None:
         )
         docs.extend(chunks)
 
-    return FAISS.from_documents(docs, _embeddings) if docs else None
+    return FAISS.from_documents(docs, _get_embeddings()) if docs else None
 
 
 def get_ai_response(question: str, vector_store: FAISS, api_key: str) -> str:
