@@ -145,7 +145,10 @@ with st.sidebar:
 
     if st.session_state.api_key:
         is_valid, msg = validate_groq_api_key(st.session_state.api_key)
-        st.success("✅ Valid key") if is_valid else st.error(msg)
+        if is_valid:
+            st.success("✅ Valid key")
+        else:
+            st.error(msg)
 
     st.markdown(
         "Don't have a key? Get one free at [console.groq.com](https://console.groq.com/keys)"
