@@ -14,23 +14,16 @@ Chat with your documents using smart local analysis or optional AI‑enhanced an
 
 ## Requirements
 - Python 3.9+
-- [uv](https://github.com/astral-sh/uv) (recommended) or pip
+- [uv](https://github.com/astral-sh/uv)
 
-## Setup (using uv)
+## Setup
 ```bash
-uv venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
-uv pip install -r requirements.txt
-```
-
-## Setup (using pip)
-```bash
-pip install -r requirements.txt
+uv sync
 ```
 
 ## Run Locally
 ```bash
-streamlit run streamlit_app.py
+uv run streamlit run streamlit_app.py
 ```
 Then open `http://localhost:8501`.
 
@@ -50,14 +43,15 @@ Then open `http://localhost:8501`.
 - **LLM Framework** — LangChain (`langchain-groq`, `langchain-core`)
 - **LLM Provider** — Groq API (`llama-3.1-8b-instant` and fallbacks)
 - **Doc Parsing** — PyPDF2, python-docx
-- **Package Manager** — uv
+- **Package Manager** — uv (`pyproject.toml`)
 
 ## Project Structure
 ```
 Docuchat/
 ├─ streamlit_app.py    # Streamlit UI (primary entry)
 ├─ simple_app.py       # Reusable logic: parsing, analysis, and LangChain+Groq call
-├─ requirements.txt    # Python dependencies
+├─ pyproject.toml      # Python dependencies (uv)
+├─ uv.lock             # Lockfile
 ├─ README.md           # This file
 └─ uploads/            # Temporary user files (gitignored)
 ```
