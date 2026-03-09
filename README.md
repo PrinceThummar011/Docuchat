@@ -23,7 +23,7 @@ uv sync
 
 ## Run Locally
 ```bash
-uv run streamlit run streamlit_app.py
+uv run streamlit run docuchat/ui/app.py
 ```
 Then open `http://localhost:8501`.
 
@@ -51,12 +51,20 @@ Then open `http://localhost:8501`.
 ## Project Structure
 ```
 Docuchat/
-├─ streamlit_app.py    # Streamlit UI (primary entry)
-├─ simple_app.py       # Reusable logic: parsing, analysis, and LangChain+Groq call
-├─ pyproject.toml      # Python dependencies (uv)
-├─ uv.lock             # Lockfile
-├─ README.md           # This file
-└─ uploads/            # Temporary user files (gitignored)
+├── docuchat/
+│   ├── __init__.py
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── document.py     # PDF / DOCX / TXT text extraction
+│   │   ├── rag.py          # FAISS vector store + RAG pipeline
+│   │   └── validator.py    # GROQ API key validation
+│   └── ui/
+│       ├── __init__.py
+│       └── app.py          # Streamlit UI
+├── uploads/                # Temporary files (gitignored)
+├── pyproject.toml          # Dependencies (uv)
+├── uv.lock                 # Lockfile
+└── README.md
 ```
 
 ## Privacy
