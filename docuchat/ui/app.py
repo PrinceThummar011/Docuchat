@@ -213,10 +213,15 @@ def handle_user_message(user_message: str) -> None:
         {"role": "user", "content": user_message, "timestamp": datetime.now().isoformat()}
     )
 
-    # Retrieve + generate
+    # Retrieve + generate (pass history for follow-up question support)
     with st.chat_message("assistant"):
         with st.spinner("Searching documents…"):
-            answer = get_ai_response(user_message, st.session_state.vector_store, api_key)
+            answer = get_ai_response(
+                user_message,
+                st.session_state.vector_store,
+                api_key,
+                conversation_history=st.session_state.conversation,
+            )
         st.markdown(answer)
 
     # Persist assistant message

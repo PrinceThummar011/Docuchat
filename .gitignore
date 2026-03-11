@@ -48,6 +48,9 @@ uploads/**
 # Keep uploads folder but not the files
 !uploads/.gitkeep
 
+# Evaluation results — commit intentionally (shows real benchmark numbers for portfolio)
+# results/
+
 # Logs
 *.log
 
